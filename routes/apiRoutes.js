@@ -86,6 +86,11 @@ module.exports = function (app){
   app.get("/api/session", function(req, res, next){
     res.json(req.session.user)
   });
+  app.get("/api/logout", function (req, res) {
+    req.session.user = {}
+    req.session.user.loggedIn = false;
+    res.send("loggedOut")
+  })
   
   //get user info endpoint via query params
   app.get('/api/profile/:username', function(req, res, next){
