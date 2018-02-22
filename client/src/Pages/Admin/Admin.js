@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Profile = (props) => {
-  console.log(props);
+  console.log(props)
   return (
-    <div>Profile</div>
+    <div>Admin view</div>
   );
 };
 

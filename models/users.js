@@ -26,6 +26,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true,
       len: [1]
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      len: [1]
     }
   });
 

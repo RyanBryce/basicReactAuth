@@ -46,6 +46,7 @@ module.exports = function (app){
                 profilePic: dbData.dataValues.profilePic
               }
              //we update the loggedIn key to have a true value. we can use this value on the fron end to see if the user is logged in or not.
+              req.session.user.isAdmin = dbData.dataValues.isAdmin;
               req.session.user.loggedIn = true;
             //here the session's user object is updated with the users data. we can hit our /session endpoing witha  get request from the front end and get our user object.
               req.session.user.currentUser = userObj;
@@ -75,6 +76,7 @@ module.exports = function (app){
               email: dbData.dataValues.email,
               profilePic: dbData.dataValues.profilePic
             }
+            req.session.user.isAdmin = dbData.dataValues.isAdmin;
             req.session.user.loggedIn = true;
             req.session.user.currentUser = userObj;
             res.json(dbData);

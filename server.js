@@ -24,6 +24,7 @@ function userSetup(req, res, next) {
   if (!req.session.user) {
     req.session.user = {}
     req.session.user.loggedIn = false;
+    req.session.user.isAdmin = false;
   }
   next()
 }
@@ -45,6 +46,8 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, function() {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+db.sequelize.sync({ force: false }).then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+  });
 });
