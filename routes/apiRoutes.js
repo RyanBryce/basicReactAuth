@@ -91,6 +91,7 @@ module.exports = function (app){
   app.get("/api/logout", function (req, res) {
     req.session.user = {}
     req.session.user.loggedIn = false;
+    req.session.user.isAdmin = false;
     res.send("loggedOut")
   })
   
