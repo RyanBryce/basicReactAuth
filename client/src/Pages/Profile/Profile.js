@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Profile = (props) => {
-  console.log(props);
-  return (
-    <div>Profile</div>
-  );
-};
+class Profile extends Component {
+  render() {
+    return (
+      <div>
+        Profile
+      </div>
+    );
+  }
+}
 
 export default Profile;

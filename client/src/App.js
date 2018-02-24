@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
 import Admin from "./Pages/Admin";
+import Signup from "./Pages/Signup";
 import Profile from "./Pages/Profile";
 import axios from 'axios';
 import './App.css';
@@ -36,6 +37,13 @@ class App extends Component {
       this.checkLogin()
     })
   }
+  userDidSignup = (userData) => {
+    console.log(userData)
+    axios.post("/api/signUp", userData).then((res) => {
+      console.log(res)
+      this.checkLogin()
+    })
+  }
 
   userLogOut = () => {
     axios.get("/api/logout").then((res) => {
@@ -51,13 +59,11 @@ class App extends Component {
           <Nav userInfo={this.state.user} logout={this.userLogOut}/>
           <Switch>  
               <Route exact path="/" component={Home}/>
-              <Route exact path="/login" render={() => (
-               <Login handleLogin={this.userDidLogin} /> 
-              )} />
+              
             <Route exact path="/logout" render={() => (
               <button onClick={this.userLogOut}> logOut</button>
             )} />
-            <Route exact path="/user/Profile" render={(props) => {
+            <Route exact path="/user/:username" render={(props) => {
               console.log(this.state.user.LoggedIn, "this is in path for /profiles")
               return this.state.user.loggedIn ? (
                 <Profile {...props}/> 
@@ -65,6 +71,15 @@ class App extends Component {
                   <Redirect to="/login"/>
                 )
             }} />
+            <Route exact path="/login" render={() => (
+              <Login handleLogin={this.userDidLogin} />
+            )} />
+            <Route exact path="/signup" render={() => (
+              <Signup handleSignup={this.userDidSignup} />
+            )} />
+            <Route exact path="/logout" render={() => (
+              <button onClick={this.userLogOut}> logOut</button>
+            )} />
             <Route exact path="/admin" render={(props) => {
               console.log(props, "this is match")
               console.log(this.state.user.isAdmin, "this is in path for /profiles")
