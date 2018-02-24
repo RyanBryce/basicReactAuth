@@ -97,7 +97,7 @@ module.exports = function (app){
   
   //get user info endpoint via query params
   app.get('/api/profile/:username', function(req, res, next){
-    console.log(req.param);
+    console.log(req.params.username);
     db.users.findOne({
       where: {
         username: req.params.username
@@ -111,8 +111,8 @@ module.exports = function (app){
         email: dbData.dataValues.email,
         profilePic: dbData.dataValues.profilePic
       }
-      req.session.user.loggedIn = true;
-      req.session.user.currentUser = userObj;
+      // req.session.user.loggedIn = true;
+      // req.session.user.currentUser = userObj;
       res.json(userObj)
     })
   });

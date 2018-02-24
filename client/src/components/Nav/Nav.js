@@ -24,6 +24,9 @@ const Nav = (props) => {
           <li className="nav-item">
             {!props.userInfo.loggedIn ? <NavLink exact className="nav-link" to="/login">Login</NavLink> : <a  className="nav-link" onClick={props.logout}> Logout</a>}
           </li>
+          <li className="nav-item">
+            {!props.userInfo.loggedIn && <NavLink exact className="nav-link" to="/signup">Sign Up</NavLink>}
+          </li>
         </ul>
       </div>
     </nav>

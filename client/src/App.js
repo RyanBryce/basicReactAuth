@@ -16,6 +16,7 @@ class App extends Component {
       isAdmin: false
     }
   }
+  
   componentDidMount() {
     this.checkLogin()
     console.log(this.state)
@@ -58,7 +59,7 @@ class App extends Component {
         <div>
           <Nav userInfo={this.state.user} logout={this.userLogOut}/>
           <Switch>  
-              <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={Home}/>
               
             <Route exact path="/logout" render={() => (
               <button onClick={this.userLogOut}> logOut</button>
@@ -86,7 +87,7 @@ class App extends Component {
               return this.state.user.loggedIn ? (
                 <Admin {...props}/>
               ) : (
-                  <Redirect to="/login" />
+                  <Redirect to="/" />
                 )
             }} />
           </Switch>
