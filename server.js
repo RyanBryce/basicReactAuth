@@ -2,8 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const session = require('express-session');
-const db = require('./models')
 const path = require("path");
+const mongoose = require('mongoose')
+//this is for Sequelize comment this out if using mongoose
+const db = require('./models')
 
 
 const PORT = process.env.PORT || 3001;
@@ -46,8 +48,25 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+//make sure to comment out lines 7, 52 - 56 if you want to use mongodb with mongoose. 
+//connection directions for mongodb/mongoose start on line 58
 db.sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+// //uncomment lines 62 - 72 if you want to use mongodb with mongoose. Make sure to make a 
+// //<users> database if your in development mode
+
+// var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/users';
+
+// // Set mongoose to leverage built in JavaScript ES6 Promises
+// // Connect to the Mongo DB
+// mongoose.Promise = Promise;
+// mongoose.connect(MONGODB_URI);
+
+// // Listen on the port
+// app.listen(PORT, function () {
+//   console.log("Listening on port: " + PORT);
+// });
