@@ -25,6 +25,13 @@ app.use(session({
 function userSetup(req, res, next) {
   if (!req.session.user) {
     req.session.user = {}
+    req.session.currentUser = {
+      id: null,
+      name: '',
+      username: '',
+      email: '',
+      profilePic: null
+    }
     req.session.user.loggedIn = false;
     req.session.user.isAdmin = false;
   }
