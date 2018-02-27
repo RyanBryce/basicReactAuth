@@ -25,7 +25,7 @@ app.use(session({
 function userSetup(req, res, next) {
   if (!req.session.user) {
     req.session.user = {}
-    req.session.currentUser = {
+    req.session.user.currentUser = {
       id: null,
       name: '',
       username: '',

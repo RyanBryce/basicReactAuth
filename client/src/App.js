@@ -68,7 +68,7 @@ class App extends Component {
           <Switch>  
             <Route exact path="/" component={Home}/>
             <Route path="/user/:username" render={(props) => {
-               return <Profile {...props} checkLogin={this.checkLogin}/>
+               return <Profile {...props} />
             }} />
 
             {/* 
