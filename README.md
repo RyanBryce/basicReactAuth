@@ -2,7 +2,7 @@
 
 ## About This Boilerplate
 Hello, Students!
-This is a simple React Auth w/o OAuth or Passport. It has some cool functionality. Certain links will only be visible when you are logged in. Others will only be able to be seen if you are an admin. Feel free To use this as a seed, copy paste parts into your own project, or just take a look around.
+This is a simple React Auth w/o Redux, OAuth or Passport. It has some cool functionality. Certain links will only be visible when you are logged in. Others will only be able to be seen if you are an admin. Feel free To use this as a seed, copy paste parts into your own project, or just take a look around.
 
 #### This React.js Auth uses the following technologies.
 
