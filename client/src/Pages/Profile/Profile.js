@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
+import Update from '../../components/Update';
 import axios from 'axios';
 
 class Profile extends Component {
@@ -56,11 +57,11 @@ class Profile extends Component {
               <p className="card-text">Your Users Comments</p>
             {this.state.user.currentUser.username === this.state.tempUser.username &&
             <Link 
-            to={`/user/${this.props.match.params.username}`} 
+            to={`/user/${this.props.match.params.username}/update`} 
             className="btn btn-primary">Update</Link>}
+            <Route path="/user/:username/update" component={Update} />
             </div>
         </div>
-        <Route path="/user/:username/update" />
       </div>
     );
   }

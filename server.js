@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 app.use(session({
-  secret: process.env.SESSIONSECRET || config.sessionSecret || "cat",
+  secret: process.env.SESSIONSECRET || "cat",
   resave: false,
   saveUninitialized: true
 }));
@@ -63,7 +63,7 @@ db.sequelize.sync({ force: false }).then(function () {
   });
 });
 
-// //uncomment lines 62 - 72 if you want to use mongodb with mongoose. Make sure to make a 
+// //uncomment lines 69 - 79 if you want to use mongodb with mongoose. Make sure to make a 
 // //<users> database if your in development mode
 
 // var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/users';

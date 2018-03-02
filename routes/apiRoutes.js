@@ -90,6 +90,13 @@ module.exports = function (app){
   });
   app.get("/api/logout", function (req, res) {
     req.session.user = {}
+    req.session.user.currentUser = {
+      id: null,
+      name: '',
+      username: '',
+      email: '',
+      profilePic: null
+    }
     req.session.user.loggedIn = false;
     req.session.user.isAdmin = false;
     res.send("loggedOut")
@@ -142,7 +149,7 @@ module.exports = function (app){
 //the below lines of code are the api endpoints to be used with
 //mongodb and mongoose. Comment out or delete everything on lines 1 - 140,
 //if you are going to be using mongodb/mongoose, and uncomment lines
-//148-293.
+//155-300.
 
 
 // var User = require('../mongooseModels/user.js')
