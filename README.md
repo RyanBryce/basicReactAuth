@@ -1,6 +1,15 @@
-# Create React Express App
+# Basic React Auth Boilerplate With Express
 
 ## About This Boilerplate
+Hello, Students!
+This is a simple React Auth w/o OAuth or Passport. It has some cool functionality. Certain links will only be visible when you are logged in. Others will only be able to be seen if you are an admin. Feel free To use this as a seed, copy paste parts into your own project, or just take a look around.
+
+####This React.js Auth uses the following technologies.
+
+**FrontEnd:** React.js, Bootstrap v4, Axios, React Router. 
+**BackEnd:** Node.js, Express, Express Sessions, Body Parser, CORS, bcrypt, Sequelize, MySql **Optional:** MongoDB Mongoose
+
+##HAPPY HACKING##
 
 This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
 
