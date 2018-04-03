@@ -27,34 +27,40 @@ class App extends Component {
     console.log(this.state)
   }
 
-  checkLogin = () => {
+  checkLogin = (cb) => {
     axios.get("/api/session").then((res) => {
       console.log(this.state, "this is checkloging state")
       console.log(res)
       this.setState({ user: res.data});
       console.log(this.state)
+      if(cb) {
+        cb()
+      }
     })
   }
   
-  userDidLogin = (userData) => {
+  userDidLogin = (userData, cb) => {
     console.log(userData)
     axios.post("/api/login", userData).then((res) => {
       console.log(res)
-      this.checkLogin()
+      this.checkLogin(cb)
+      return <Redirect to={`/user/${this.state.user.username}`} />
     })
   }
-  userDidSignup = (userData) => {
+  userDidSignup = (userData, cb) => {
     console.log(userData)
     axios.post("/api/signUp", userData).then((res) => {
       console.log(res)
-      this.checkLogin()
+      this.checkLogin(cb)
+      return <Redirect to="/user/" />
     })
   }
 
-  userLogOut = () => {
+  userLogOut = (cb) => {
     axios.get("/api/logout").then((res) => {
       console.log(res)
       this.setState({ user: res.data });
+      <Redirect to="/"/>
     })
   }
   
@@ -84,14 +90,11 @@ class App extends Component {
             <Route exact path="/logout" render={() => (
               <button onClick={this.userLogOut}> logOut</button>
             )} />
-            <Route exact path="/login" render={() => (
-              <Login handleLogin={this.userDidLogin} />
+            <Route exact path="/login" render={(props) => (
+              <Login userInfo={this.state.user} {...props} handleLogin={this.userDidLogin} />
             )} />
             <Route exact path="/signup" render={() => (
-              <Signup handleSignup={this.userDidSignup} />
-            )} />
-            <Route exact path="/logout" render={() => (
-              <button onClick={this.userLogOut}> logOut</button>
+              <Signup userInfo={this.state.user} handleSignup={this.userDidSignup} />
             )} />
             <Route exact path="/admin" render={(props) => {
               console.log(props, "this is match")

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Input from '../../components/Input';
 
 class Signup extends Component {
@@ -7,8 +8,10 @@ class Signup extends Component {
     username: '',
     name: '',
     profilePic: '',
-    email: ''
+    email: '',
+    redirect: false
   }
+
 
   handleChange = (event) => {
     console.log(event.target.value);
@@ -20,6 +23,9 @@ class Signup extends Component {
 
 
   render() {
+    if(this.state.redirect){
+      return <Redirect to={`/user/${this.props.userInfo.username}`} />
+    }
     return (
       <div>
       <Input placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange} />
@@ -32,7 +38,15 @@ class Signup extends Component {
         <br />
         <Input placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} />
         
-        <button onClick={() => this.props.handleSignup(this.state)}>Login</button>
+        <button onClick={() => this.props.handleSignup({
+          password: this.state.password,
+          username: this.state.username,
+          name: this.state.name,
+          profilePic: this.state.profilePic,
+          email: this.state.email
+        }, () => {
+        this.setState({redirect: true});
+        })}>Login</button>
       </div>
     );
   }
