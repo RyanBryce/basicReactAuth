@@ -16,7 +16,7 @@ const Nav = (props) => {
             <NavLink exact className="nav-link" to="/">Home</NavLink>
           </li>
           <li className="nav-item">
-            {props.userInfo.loggedIn && <NavLink exact className="nav-link" to={`/user/${props.userInfo.currentUser.username}`}>Profile</NavLink>}
+            {props.userInfo.loggedIn && <NavLink exact className="nav-link" to={`/user/${props.userInfo.username}`}>Profile</NavLink>}
           </li>
           <li className="nav-item">
             {props.userInfo.isAdmin && <NavLink exact className="nav-link"  to="/admin">Admin</NavLink>}

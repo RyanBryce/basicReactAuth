@@ -8,15 +8,13 @@ class Profile extends Component {
     state = {
       tempUser: {},
       user: {
+        id: null,
+        name: '',
+        username: '',
+        email: '',
+        profilePic: null,
         loggedIn: false,
-        isAdmin: false,
-        currentUser: {
-          id: null,
-          name: '',
-          username: '',
-          email: '',
-          profilePic: null
-        }
+        isAdmin: false
       }
     }
 
@@ -55,7 +53,7 @@ class Profile extends Component {
             <div className="card-body">
               <h5 className="card-title">{this.state.tempUser.username}</h5>
               <p className="card-text">Your Users Comments</p>
-            {this.state.user.currentUser.username === this.state.tempUser.username &&
+            {this.state.user.username === this.state.tempUser.username &&
             <Link 
             to={`/user/${this.props.match.params.username}/update`} 
             className="btn btn-primary">Update</Link>}

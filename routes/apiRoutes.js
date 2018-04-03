@@ -45,14 +45,14 @@ module.exports = function (app){
                 email: dbData.dataValues.email,
                 profilePic: dbData.dataValues.profilePic
               }
-             //we update the loggedIn key to have a true value. we can use this value on the fron end to see if the user is logged in or not.
-              req.session.user.isAdmin = dbData.dataValues.isAdmin;
-              req.session.user.loggedIn = true;
-            //here the session's user object is updated with the users data. we can hit our /session endpoing witha  get request from the front end and get our user object.
-              req.session.user.currentUser = userObj;
-              
-              console.log(dbData.dataValues)
-              res.status(200).send('Successful login')
+              //here the session's user object is updated with the users data. we can hit our /session endpoing witha  get request from the front end and get our user object.
+                req.session.user = userObj;
+              //we update the loggedIn key to have a true value. we can use this value on the fron end to see if the user is logged in or not.
+                req.session.user.isAdmin = dbData.dataValues.isAdmin;
+                req.session.user.loggedIn = true;
+                
+                console.log(dbData.dataValues)
+                res.status(200).send('Successful login')
             }
           });
         }
@@ -76,9 +76,9 @@ module.exports = function (app){
               email: dbData.dataValues.email,
               profilePic: dbData.dataValues.profilePic
             }
+            req.session.user = userObj;
             req.session.user.isAdmin = dbData.dataValues.isAdmin;
             req.session.user.loggedIn = true;
-            req.session.user.currentUser = userObj;
             res.json(dbData);
           });
       });
@@ -89,16 +89,15 @@ module.exports = function (app){
     res.json(req.session.user)
   });
   app.get("/api/logout", function (req, res) {
-    req.session.user = {}
-    req.session.user.currentUser = {
+    req.session.user = {
       id: null,
       name: '',
       username: '',
       email: '',
-      profilePic: null
+      profilePic: null,
+      loggedIn: false,
+      isAdmin: false
     }
-    req.session.user.loggedIn = false;
-    req.session.user.isAdmin = false;
     res.send("loggedOut")
   })
   
@@ -126,7 +125,7 @@ module.exports = function (app){
   //update profile route
   app.put('/api/update/:username', function(req, res, next){
     req.session.user.currentUser = req.body
-    var loggedUser = req.session.user.currentUser;
+    var loggedUser = req.session.user;
     if(true){
       db.users.update({
         username: loggedUser.username,

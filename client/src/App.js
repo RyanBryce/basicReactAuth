@@ -11,17 +11,15 @@ import './App.css';
 
 class App extends Component {
  state = {
-    user: {
-      loggedIn: false,
-      isAdmin: false,
-      currentUser: {
-        id: null,
-        name: '',
-        username: '',
-        email: '',
-        profilePic: null
-      }
-    }
+   user: {
+     id: null,
+     name: '',
+     username: '',
+     email: '',
+     profilePic: null,
+     loggedIn: false,
+     isAdmin: false
+   }
   }
   
   componentDidMount() {

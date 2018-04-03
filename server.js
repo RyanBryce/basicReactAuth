@@ -24,22 +24,23 @@ app.use(session({
 
 function userSetup(req, res, next) {
   if (!req.session.user) {
-    req.session.user = {}
-    req.session.user.currentUser = {
+    req.session.user = {
       id: null,
       name: '',
       username: '',
       email: '',
-      profilePic: null
+      profilePic: null,
+      loggedIn: false,
+      isAdmin: false
     }
-    req.session.user.loggedIn = false;
-    req.session.user.isAdmin = false;
   }
   next()
 }
 
 //using middlewhere acrossed the entire application before any route gets hit.
 app.use(userSetup)
+
+app.use(cors())
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
